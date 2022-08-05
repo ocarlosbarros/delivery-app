@@ -4,7 +4,7 @@ const {
 } = require('sequelize');
 const User = require('./user');
 module.exports = (sequelize, DataTypes) => {
-  const Sale = sequelize.define('Sale', {
+  const Sale = sequelize.define('sale', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     }
   }, {
-    modelName: 'Sale',
+    modelName: 'sale',
     timestamps: false,
     underScore: true,
   });

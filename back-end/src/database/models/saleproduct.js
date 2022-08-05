@@ -5,7 +5,7 @@ const {
 const Product = require('./product');
 const Sale = require('./sale');
 module.exports = (sequelize, DataTypes) => {
-  const SaleProduct = sequelize.define('SaleProduct', {
+  const SaleProduct = sequelize.define('saleProduct', {
     sale_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'SaleProduct',
+    modelName: 'saleProduct',
     timestamps: false,
     underScore: true,
   });
