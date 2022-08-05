@@ -18,16 +18,12 @@ export default function LoginForm() {
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
         />
-        <input
-          data-testid="common_login__button-login"
-          type="button"
-          value="Login"
-        />
-        <input
-          data-testid="common_login__button-register"
-          type="button"
-          value="Ainda não tenho conta"
-        />
+        <button type="button" data-testid="common_login__button-login">
+          Login
+        </button>
+        <button data-testid="common_login__button-register" type="button">
+          Ainda não tenho conta
+        </button>
       </S.Form>
     </S.FormWrapper>
   );
