@@ -26,12 +26,12 @@ export default function LoginForm() {
       <S.FormWrapper>
         <S.Form autoComplete="off">
           <InputText
-            data-testid="common_login__input-email"
+            testid="common_login__input-email"
             value={ email }
             set={ setEmail }
           />
           <InputText
-            data-testid="common_login__input-password"
+            testid="common_login__input-password"
             value={ password }
             set={ setPassword }
           />
