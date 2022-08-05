@@ -2,13 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import App from './App';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Login from './screens/Login';
 
+const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+  <BrowserRouter>
+    <Routes>
+      <Route element={ <Navigate to="/login" /> } path="/" />
+      <Route element={ <Login /> } path="/login" />
+    </Routes>
+  </BrowserRouter>,
+  rootElement
 );
 
 // If you want to start measuring performance in your app, pass a function
