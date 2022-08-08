@@ -1,7 +1,7 @@
 const joi = require('joi');
 
 const userSchema = joi.object({
-  nome: joi.string().max(12).required(),
+  name: joi.string().max(12).required(),
   email: joi.string().email({
     minDomainSegments: 2, tlds: { allow: ['com'] },
   }).required(),
