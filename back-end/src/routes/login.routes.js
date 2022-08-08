@@ -1,5 +1,5 @@
 const loginRoute = require('express').Router();
-const loginValidation = require('../middlewares/loginValidation');
+const { loginValidation } = require('../middlewares');
 const { loginController } = require('../controllers');
 
 loginRoute.post('/', loginValidation, (req, res, next) =>
