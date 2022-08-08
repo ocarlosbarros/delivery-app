@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import InputText from '../InputForm';
 
@@ -13,15 +14,24 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
+
   const NOT_FOUND = 404;
 
   const disabled = isValid({ email, password });
+  const instance = axios.create({
+    baseURL: 'http://localhost:3001/',
+  });
 
-  const handleLogin = () => {
-    axios.post('localhost:3001/login', { email, password }).then((res) => {
-      if (res.status === NOT_FOUND) setError(true);
-    });
-    setError(!error);
+  const handleLogin = async () => {
+    try {
+      await instance.post('/login', { email, password });
+      navigate('/customer/products');
+      // history.push('/customer/products');
+    } catch (e) {
+      if (e.response.status === NOT_FOUND) setError(true);
+    }
+    // setError(!error);
   };
 
   return (
