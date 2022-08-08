@@ -7,6 +7,7 @@ import * as S from './styled';
 import ErrorCard from '../ErrorCard';
 import BeerGIF from '../../images/beer.gif';
 import ButtonForm from '../ButtonForm';
+import { isValid } from '../../utils';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -14,11 +15,13 @@ export default function LoginForm() {
   const [error, setError] = useState(false);
   const NOT_FOUND = 404;
 
+  const disabled = isValid({ email, password });
+
   const handleLogin = () => {
     axios.post('localhost:3001/login', { email, password }).then((res) => {
       if (res.status === NOT_FOUND) setError(true);
     });
-    // setError(!error);
+    setError(!error);
   };
 
   return (
@@ -43,6 +46,7 @@ export default function LoginForm() {
             } }
           >
             <ButtonForm
+              disabled={ disabled }
               click={ handleLogin }
               type="button"
               testid="common_login__button-login"
