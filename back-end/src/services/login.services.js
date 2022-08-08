@@ -1,4 +1,6 @@
+const { StatusCodes } = require('http-status-codes');
 const { user } = require('../database/models');
+const errorHandler = require('../utils/errorHandler');
 const encrypt = require('../utils/crypto');
 
 const findByEmail = async (email, pwd) => {
@@ -10,7 +12,7 @@ const findByEmail = async (email, pwd) => {
   });
 
   if (!result) {
-    throw new Error('404');
+    throw errorHandler(StatusCodes.BAD_REQUEST, 'User not found');
   }
 
   return result;
