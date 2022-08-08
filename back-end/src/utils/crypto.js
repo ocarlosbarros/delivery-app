@@ -1,4 +1,3 @@
-// const crypto = require('bcrypt');
 const md5 = require('md5');
 
 const encrypt = (password) => md5(password);
