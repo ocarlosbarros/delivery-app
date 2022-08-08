@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Login from './screens/Login';
 
 const rootElement = document.getElementById('root');
@@ -13,7 +13,7 @@ ReactDOM.render(
       <Route element={ <Login /> } path="/login" />
     </Routes>
   </BrowserRouter>,
-  rootElement
+  rootElement,
 );
 
 // If you want to start measuring performance in your app, pass a function
