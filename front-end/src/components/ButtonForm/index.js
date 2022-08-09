@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import * as S from './styled';
 
 export default function ButtonForm({ type, testid, click, value, disabled }) {
+  console.log('desabiitado: ', disabled);
   return (
     <S.Button
       disabled={ disabled }

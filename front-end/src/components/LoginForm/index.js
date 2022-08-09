@@ -8,7 +8,7 @@ import * as S from './styled';
 import ErrorCard from '../ErrorCard';
 import BeerGIF from '../../images/beer.gif';
 import ButtonForm from '../ButtonForm';
-import { isValid } from '../../utils';
+import { isValidLogin } from '../../utils';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ export default function LoginForm() {
 
   const NOT_FOUND = 404;
 
-  const disabled = isValid({ email, password });
+  const disabled = !isValidLogin({ email, password });
   const instance = axios.create({
     baseURL: 'http://localhost:3001/',
   });
