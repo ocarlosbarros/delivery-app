@@ -11,7 +11,7 @@ const findByEmail = rescue(async (req, res, _next) => {
     return res.status(StatusCodes.NOT_FOUND).json({ message: 'Not found' });
   }
   
-  const token = authenticate(user);
+  const token = await authenticate(user);
     return res.status(StatusCodes.OK).json({ ...user, token });
 });
 

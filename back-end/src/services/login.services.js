@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const { user } = require('../database/models');
 const errorHandler = require('../utils/errorHandler');
-const encrypt = require('../utils/crypto');
+const { encrypt } = require('../utils');
 
 const findByEmail = async (email, pwd) => {
   const password = encrypt(pwd);

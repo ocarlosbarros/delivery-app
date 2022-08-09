@@ -1,10 +1,12 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const { getSecret } = require('../utils');
 
-const SECRET = process.env.SECRET || 'secret_app';
+const authenticate = async (user) => {
+    const secret = await getSecret();
 
-const authenticate = (user) => {
-    const token = jwt.sign(user, SECRET, { expiresIn: '15m' });
+    if (!secret) throw new Error();
+    
+    const token = jwt.sign(user, secret, { expiresIn: '15m' });
     return token;
 };
 
