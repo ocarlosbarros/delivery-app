@@ -9,10 +9,11 @@ const findByEmail = async (email, pwd) => {
   const result = await user.findOne({
     where: { email, password },
     attributes: { exclude: ['password'] },
+    raw: true, 
   });
 
   if (!result) {
-    throw errorHandler(StatusCodes.BAD_REQUEST, 'User not found');
+    throw errorHandler(StatusCodes.NOT_FOUND, 'User not found');
   }
 
   return result;
