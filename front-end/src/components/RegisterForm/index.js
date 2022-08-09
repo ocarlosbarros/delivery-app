@@ -16,7 +16,7 @@ export default function RegisterForm() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  // const NOT_FOUND = 404;
+  const CONFLICT = 409;
   const disabled = !isValidRegister({ email, password, name });
 
   const instance = axios.create({
@@ -25,10 +25,10 @@ export default function RegisterForm() {
 
   const handleRegister = async () => {
     try {
-      await instance.post('/login', { email, password });
+      await instance.post('/register', { email, password, name });
       navigate('/customer/products');
     } catch (e) {
-      if (e.response.status === NOT_FOUND) setError(true);
+      if (e.response.status === CONFLICT) setError(true);
     }
   };
 
@@ -70,7 +70,11 @@ export default function RegisterForm() {
             />
           </div>
         </S.Form>
-        {error && <ErrorCard setError={ setError } />}
+        {error && <ErrorCard
+          message="Usuário já cadastrado"
+          testid="common_register__element-invalid_register"
+          setError={ setError }
+        />}
       </S.FormWrapper>
     </S.FormContainer>
   );

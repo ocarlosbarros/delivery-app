@@ -74,7 +74,11 @@ export default function LoginForm() {
             />
           </div>
         </S.Form>
-        {error && <ErrorCard setError={ setError } />}
+        {error && <ErrorCard
+          testid="common_login__element-invalid-email"
+          setError={ setError }
+          message="Email/Senha inválidos"
+        />}
       </S.FormWrapper>
       <S.RightWrapper src={ BeerGIF } />
     </S.FormContainer>
