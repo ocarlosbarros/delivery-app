@@ -18,7 +18,8 @@ export const FormWrapper = styled.section`
   display: flex;
 `;
 
-export const LoginWrapper = styled.div`
+export const FormContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  background-color: #efede4;
 `;
