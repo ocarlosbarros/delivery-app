@@ -6,9 +6,9 @@ const loginValidation = (req, _res, next) => {
   const { error } = loginSchema.validate({ email, password });
 
   if (error) {
-    next({ status: StatusCodes.NOT_FOUND, message: error.message });
+    return next({ status: StatusCodes.NOT_FOUND, message: error.message });
   }
-  next();
+  return next();
 };
 
 module.exports = loginValidation;
