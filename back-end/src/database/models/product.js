@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(4, 2),
     },
     url_image: {
       allowNull: false,

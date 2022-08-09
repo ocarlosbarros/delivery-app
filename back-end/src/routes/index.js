@@ -5,6 +5,6 @@ const { productRoute } = require('./product.routes');
 
 Router.use('/login', loginRoute);
 Router.use('/register', registerRoute);
-Router.use('/products', productRoute);
+Router.use('/customer/products', productRoute);
 Router.use('/', (_req, res, _next) => res.send({ message: 'Redirecting...' }));
 module.exports = Router;
