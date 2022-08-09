@@ -12,6 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Login from './screens/Login';
 import Register from './screens/Register';
+import Products from './screens/Products';
 
 const history = createBrowserHistory({ window });
 
@@ -22,7 +23,7 @@ ReactDOM.render(
       <Route element={ <Navigate to="/login" /> } path="/" />
       <Route element={ <Login /> } path="/login" />
       <Route element={ <Register /> } path="/register" />
-      <Route element={ <h1>Customer Products</h1> } path="/customer/products" />
+      <Route element={ <Products /> } path="/customer/products" />
     </Routes>
   </HistoryRouter>,
   rootElement,

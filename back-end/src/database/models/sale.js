@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: true,
     },
     total_price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(9, 2),
       allowNull: false,
     },
     delivery_address: {
