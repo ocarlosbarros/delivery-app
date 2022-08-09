@@ -18,13 +18,7 @@ export const FormWrapper = styled.section`
   display: flex;
 `;
 
-export const FormContainer = styled.div`
+export const LoginWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-`;
-
-export const RightWrapper = styled.img`
-  border-radius: 32px;
-  padding: 1rem;
-  height: 100vh;
 `;
