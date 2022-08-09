@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import * as S from './styled';
 
-export default function ErrorCard({ setError }) {
+export default function ErrorCard({ setError, testid, message }) {
   return (
     <S.ModalCard onClick={ () => setError(false) }>
       <S.CardWrapper>
         <S.Title
-          data-testid="common_login__element-invalid-email"
+          data-testid={ testid }
         >
           Error
         </S.Title>
-        <S.Subtitle>Email/Senha inválidos</S.Subtitle>
+        <S.Subtitle>{ message }</S.Subtitle>
         <S.Button
           type="button"
           onClick={
@@ -27,5 +27,6 @@ export default function ErrorCard({ setError }) {
 }
 
 ErrorCard.propTypes = {
-  setError: PropTypes.func.isRequired,
-};
+  setError: PropTypes.func,
+  testid: PropTypes.string,
+}.isRequired;
