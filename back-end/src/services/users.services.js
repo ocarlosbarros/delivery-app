@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { user } = require('../database/models');
-const encrypt = require('../utils/crypto');
+const { encrypt } = require('../utils');
 const errorHandler = require('../utils/errorHandler');
 
 const createUser = async (body) => {
