@@ -1,6 +1,6 @@
 const rescue = require('express-rescue');
 const { StatusCodes } = require('http-status-codes');
-const loginService = require('../services/login.services');
+const { loginService } = require('../services');
 const { authenticate } = require('../services');
 
 const findByEmail = rescue(async (req, res, _next) => {
