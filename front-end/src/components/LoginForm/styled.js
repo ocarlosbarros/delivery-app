@@ -20,7 +20,7 @@ export const FormWrapper = styled.section`
 
 export const FormContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #efede4;
 `;
 
@@ -28,4 +28,5 @@ export const RightWrapper = styled.img`
   border-radius: 32px;
   padding: 1rem;
   height: 100vh;
+  width: 40vw;
 `;

@@ -11,7 +11,8 @@ export const CardWrapper = styled.div`
 `;
 
 export const ProductImage = styled.img`
-
+  width: 100px;
+  
 `;
 
 export const ProductName = styled.p`

@@ -3,28 +3,26 @@ import { string, number } from 'prop-types';
 
 import * as S from './styled';
 
-export default function ProductCard({
-  image = 'http://localhost:3001/images/skol_lata_350ml.jpg',
-  name = 'Skol Lata 250ml',
-  price = 2,
-  id = 0,
-}) {
+export default function ProductCard({ image, name, price, id }) {
   const [qty, setQty] = useState(0);
   return (
     <S.CardWrapper>
+
       <S.ProductImage
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ image }
       />
+
       <S.ProductName
         data-testid={ `customer_products__element-card-title-${id}` }
       >
         { name }
       </S.ProductName>
+
       <S.ProductPrice
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        { price }
+        { price.replace('.', ',') }
       </S.ProductPrice>
 
       <S.QtyWrapper>
@@ -32,7 +30,7 @@ export default function ProductCard({
           onClick={ () => {
             setQty((previousValue) => {
               const current = previousValue - 1;
-              return current;
+              return current <= 0 ? 0 : current;
             });
           } }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
