@@ -24,8 +24,11 @@ export default function LoginForm() {
   });
 
   const handleLogin = async () => {
+    /* localStorage.setItem('CART', JSON.stringify([]));
+    navigate('/customer/products'); */
     try {
       await instance.post('/login', { email, password });
+      localStorage.setItem('CART', JSON.stringify([]));
       navigate('/customer/products');
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);

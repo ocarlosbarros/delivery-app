@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ProductsList from '../../components/ProductsList';
 import NavBar from '../../components/NavBar';
+/* import arrMock from '../../mock/ProductsMock'; */
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -15,6 +16,7 @@ export default function Products() {
         .then((result) => {
           setProducts(result.data);
         });
+      /* setProducts(arrMock); */
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);
     }
