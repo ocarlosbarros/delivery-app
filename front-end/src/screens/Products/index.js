@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ProductsList from '../../components/ProductsList';
+import NavBar from '../../components/NavBar';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -19,5 +20,10 @@ export default function Products() {
     }
   }, []);
 
-  return <ProductsList products={ products } />;
+  return (
+    <>
+      <NavBar />
+      <ProductsList products={ products } />
+    </>
+  );
 }
