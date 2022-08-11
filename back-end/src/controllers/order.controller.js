@@ -13,4 +13,14 @@ const create = rescue(async (req, res, _next) => {
    return res.status(StatusCodes.CREATED).json({ id });
 });
 
-module.exports = { create };
+const getById = rescue(async (req, res, _next) => {
+   const { id } = req.params;
+   const orders = await orderService.getById(id);
+
+   return res.status(StatusCodes.OK).json(orders);
+});
+
+module.exports = {
+   create,
+   getById,
+};
