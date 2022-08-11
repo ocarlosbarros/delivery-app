@@ -1,6 +1,6 @@
 'use strict';
 
-// const User = require("../models/user");
+const { DataTypes } = require("sequelize");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -39,7 +39,6 @@ module.exports = {
       sale_date: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: new Date()
       },
       status: {
         type: Sequelize.STRING
