@@ -11,31 +11,32 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false,
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
     },
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
     },
-    total_price: {
+    totalPrice: {
       type: DataTypes.DECIMAL(9, 2),
       allowNull: false,
     },
-    delivery_address: {
+    deliveryAddress: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    delivery_number:  {
+    deliveryNumber:  {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    sale_date:  {
+    saleDate:  {
       type: DataTypes.DATE,
       allowNull: false,
+      defaultValue: DataTypes.NOW()
     },
     status:  {
       type: DataTypes.STRING,
@@ -44,14 +45,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     modelName: 'sale',
     timestamps: false,
-    underScore: true,
+    underscored: true,
   });
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.user, {
-      foreignKey: 'user_id', as: 'user'
+      foreignKey: 'userId', as: 'user'
     }, {
-      foreignKey: 'seller_id', as: 'seller'
+      foreignKey: 'sellerId', as: 'seller'
     });
   };
 

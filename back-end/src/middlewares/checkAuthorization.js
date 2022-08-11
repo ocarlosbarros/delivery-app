@@ -1,9 +1,9 @@
 const { StatusCodes } = require('http-status-codes');
 const jwt = require('jsonwebtoken');
-
-const SECRET = process.env.jwt_secret || 'jwt_secret';
+const { getSecret } = require('../utils');
 
 const checkAuthorization = async (request, response, next) => {
+  const SECRET = await getSecret();
   try {
     const { authorization } = request.headers;
 
