@@ -1,31 +1,21 @@
 const { sale } = require('../database/models');
-const { saleProduct } = require('../database/models');
+const { salesProducts } = require('../database/models');
+const { getTotalPrice } = require('../utils');
+const { orderFactory } = require('../utils');
 
 const create = async (order) => {
     const { userId, products } = order;
     
-    const totalPrice = products.reduce((acc, item) => {
-        const totalPrice = item.quantity * item.price;
-        return (acc + totalPrice);
-    }, 0)
+    const totalPrice = products.reduce(getTotalPrice, 0);
 
-    const defaultSale = {
-        user_id: userId,
-        seller_id: 2,
-        total_price: totalPrice, 
-        delivery_address: '', 
-        delivery_number: 0,
-        sale_date: Date.now(),
-        status: 'Pendente' 
-    }
+    const defaultSale = orderFactory({ userId, totalPrice });
             
-    const { id: sale_id } = await sale.create(defaultSale);
-    
-    products.map(async ({ id: product_id, quantity }) => {
-        await saleProduct.create({ sale_id, product_id, quantity})
+    const { id: saleId } = await sale.create(defaultSale);
+    products.map(async ({ id: productId, quantity }) => {
+        await salesProducts.create({ saleId, productId, quantity });
     });
    
-    return sale_id;
-}
+    return saleId;
+};
 
 module.exports = { create };
