@@ -10,3 +10,10 @@ export const isValidRegister = ({
   password,
   name,
 }) => isValidLogin({ email, password }) && name.length >= MIN_NAME_LEN;
+
+export const saveLogin = ({ name, Email: email, role, token }) => localStorage
+  .setItem('user', JSON.stringify({ name, email, role, token }));
+
+export const logout = () => {
+  localStorage.removeItem('user');
+};
