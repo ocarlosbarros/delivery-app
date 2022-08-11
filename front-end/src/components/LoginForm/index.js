@@ -8,7 +8,7 @@ import * as S from './styled';
 import ErrorCard from '../ErrorCard';
 import BeerGIF from '../../images/beer.gif';
 import ButtonForm from '../ButtonForm';
-import { isValidLogin } from '../../utils';
+import { isValidLogin, saveLogin } from '../../utils';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -27,8 +27,12 @@ export default function LoginForm() {
     /* localStorage.setItem('CART', JSON.stringify([]));
     navigate('/customer/products'); */
     try {
-      await instance.post('/login', { email, password });
+      const { data: { email: Email, name, role, token } } = await instance
+        .post('/login', { email, password });
       localStorage.setItem('CART', JSON.stringify([]));
+
+      saveLogin({ Email, name, role, token });
+
       navigate('/customer/products');
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);
