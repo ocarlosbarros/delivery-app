@@ -31,7 +31,7 @@ export default function CheckoutItem({ index, name, price, quantity }) {
         data-testid={ `customer_checkout__element-order-table-unit-price-${index - 1}` }
       >
         {
-          price
+          (Number(price)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
         }
       </S.PriceColumn>
       <S.SubTotalColumn
