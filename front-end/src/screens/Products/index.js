@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ProductsList from '../../components/ProductsList';
 import NavBar from '../../components/NavBar';
+import { CartProvider } from '../../context/CartContext';
 /* import arrMock from '../../mock/ProductsMock'; */
 
 export default function Products() {
@@ -23,9 +24,9 @@ export default function Products() {
   }, []);
 
   return (
-    <>
+    <CartProvider>
       <NavBar />
       <ProductsList products={ products } />
-    </>
+    </CartProvider>
   );
 }

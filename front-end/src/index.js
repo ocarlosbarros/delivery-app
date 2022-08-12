@@ -24,6 +24,7 @@ ReactDOM.render(
       <Route element={ <Login /> } path="/login" />
       <Route element={ <Register /> } path="/register" />
       <Route element={ <Products /> } path="/customer/products" />
+      <Route element={ <h1>Checkout</h1> } path="/customer/checkout" />
     </Routes>
   </HistoryRouter>,
   rootElement,
