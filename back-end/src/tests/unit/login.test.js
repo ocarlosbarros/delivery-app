@@ -12,7 +12,7 @@ const { expect } = chai;
 describe('1 - Login', () => {
   describe('findByEmail method when succeeded', () => {
     before(() => {
-      sinon.stub(user, 'findOne').resolves(loginReturn)
+      sinon.stub(user, 'findOne').resolves(loginReturn);
     });
 
     after(() => {
@@ -26,13 +26,13 @@ describe('1 - Login', () => {
 
     it('has an object with "id", "name", "email", "role" and "token"', async () => {
       const response = await chai.request(app).post('/login').send(loginBody);
-      expect(response.body).to.have.keys('id', 'name', 'email', 'role', 'token');
+      expect(response.body).to.have.all.keys('id', 'name', 'email', 'role', 'token');
     });
   });
 
   describe('findByEmail method when fail', () => {
     before(() => {
-      sinon.stub(user, 'findOne').resolves()
+      sinon.stub(user, 'findOne').resolves();
     });
 
     after(() => {
