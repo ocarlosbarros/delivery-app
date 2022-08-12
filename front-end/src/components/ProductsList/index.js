@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
 import { CartContext } from '../../context/CartContext';
+import { totalPrice } from '../../utils';
 
 export default function ProductsList({ products }) {
   const { cart } = useContext(CartContext);
   const navigate = useNavigate();
   const disabled = cart.length === 0;
-  const totalPrice = cart.length ? cart
-    .reduce((a, b) => a + (b.price * b.quantity), 0) : cart.length;
 
   return (
     <>
@@ -30,7 +29,8 @@ export default function ProductsList({ products }) {
           data-testid="customer_products__checkout-bottom-value"
         >
           {
-            totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+            totalPrice(cart)
+              .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
           }
         </p>
         <button
