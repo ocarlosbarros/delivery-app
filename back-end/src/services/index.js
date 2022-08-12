@@ -3,6 +3,7 @@ const authenticateService = require('./authenticate.service');
 const loginService = require('./login.services');
 const productsService = require('./products.services');
 const orderService = require('./order.services');
+const adminService = require('./admin.service');
 
 module.exports = {
   userService,
@@ -10,4 +11,5 @@ module.exports = {
   loginService,
   productsService,
   orderService,
+  adminService,
 };
