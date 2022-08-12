@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import * as S from './styled';
 
-export default function CheckoutItem({ index, name, price, quantity }) {
+export default function CheckoutItem({ index, name, price, quantity, remove }) {
   return (
     <S.ItemRow>
       <S.ItemColumn
@@ -43,6 +43,7 @@ export default function CheckoutItem({ index, name, price, quantity }) {
         }
       </S.SubTotalColumn>
       <S.RemoveColumn
+        onClick={ () => remove(index - 1) }
         data-testid={ `customer_checkout__element-order-table-remove-${index - 1}` }
       >
         Remover
@@ -56,4 +57,5 @@ CheckoutItem.propTypes = {
   name: PropTypes.string,
   price: PropTypes.number,
   quant: PropTypes.number,
+  remove: PropTypes.func,
 }.isRequired;
