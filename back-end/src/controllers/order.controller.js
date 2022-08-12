@@ -3,12 +3,10 @@ const { StatusCodes } = require('http-status-codes');
 const { orderService } = require('../services');
 
 const create = rescue(async (req, res, _next) => {
-   const products = req.body;
+   const order = req.body;
    const { id: userId } = req.user;
    
-   const order = { userId, products };
-   
-   const id = await orderService.create(order);
+   const id = await orderService.create({ userId, ...order });
   
    return res.status(StatusCodes.CREATED).json({ id });
 });
