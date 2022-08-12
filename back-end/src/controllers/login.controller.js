@@ -7,7 +7,7 @@ const findByEmail = rescue(async (req, res, _next) => {
   const { email, password } = req.body;
   const user = await loginService.findByEmail(email, password);
   
-  const token = await authenticate(user);
+  const token = await authenticateService(user);
 
   return res.status(StatusCodes.OK).json({ ...user, token });
 });
