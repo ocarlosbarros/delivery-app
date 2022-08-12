@@ -3,7 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const { sale } = require('../database/models');
 const { salesProducts } = require('../database/models');
 
-const adminService = require('./admin.service');
+const adminService = require('./admin.services');
 
 const { errorHandler, validateProducts } = require('../utils');
 const { orderFactory } = require('../utils');
