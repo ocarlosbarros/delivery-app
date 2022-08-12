@@ -6,12 +6,13 @@ const { productRoute } = require('./product.routes');
 const { orderRoute } = require('./order.routes');
 const { adminRoute } = require('./admin.routes');
 const { checkAuthorization } = require('../middlewares');
+const { checkAdminAuthorization } = require('../middlewares');
 
 Router.use('/login', loginRoute);
 Router.use('/register', registerRoute);
 Router.use('/customer/products', productRoute);
 Router.use('/customer/orders', checkAuthorization, orderRoute);
-Router.use('/admin/manage', checkAuthorization, adminRoute);
+Router.use('/admin/manage', checkAuthorization, checkAdminAuthorization, adminRoute);
 
 Router.use('/images', express.static('public'));
 
