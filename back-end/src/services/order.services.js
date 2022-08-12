@@ -1,28 +1,26 @@
 const { StatusCodes } = require('http-status-codes');
+
 const { sale } = require('../database/models');
 const { salesProducts } = require('../database/models');
-const { product } = require('../database/models');
-const { getTotalPrice, errorHandler } = require('../utils');
+
+const adminService = require('./admin.services');
+
+const { errorHandler, validateProducts } = require('../utils');
 const { orderFactory } = require('../utils');
 
 const create = async (order) => {
-    const { userId, products } = order;
+    const { sellerId, products: productOrder } = order;
     
-    const allProducts = await product.findAll();
+    const sellerFounded = await adminService.findSellerById(sellerId);
     
-    const ids = allProducts.map(({ id }) => id);
-
-    const exists = products.every(({ id }) => ids.includes(id));
-
-    if (!exists) {
-        throw errorHandler(StatusCodes.BAD_REQUEST, 'Invalid id');
+    if (!sellerFounded) {
+        throw errorHandler(StatusCodes.BAD_REQUEST, 'Invalid id seller');
     }
-
-    const totalPrice = products.reduce(getTotalPrice, 0);
-
-    const defaultSale = orderFactory({ userId, totalPrice });
+    
+    const products = await validateProducts(productOrder);
+    const newOrder = orderFactory({ ...order, products });
             
-    const { id: saleId } = await sale.create(defaultSale);
+    const { id: saleId } = await sale.create(newOrder);
 
     products.map(async ({ id: productId, quantity }) => {
         await salesProducts.create({ saleId, productId, quantity });

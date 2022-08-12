@@ -3,6 +3,7 @@ const errorHandler = require('./errorHandler');
 const getSecret = require('./getSecret');
 const getTotalPrice = require('./getTotalPrice');
 const orderFactory = require('./orderFactory');
+const validateProducts = require('./validateProducts');
 
 module.exports = {
     encrypt,
@@ -10,4 +11,5 @@ module.exports = {
     getSecret,
     getTotalPrice,
     orderFactory,
+    validateProducts,
 };
