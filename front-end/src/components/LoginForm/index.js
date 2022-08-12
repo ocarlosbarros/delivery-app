@@ -29,7 +29,7 @@ export default function LoginForm() {
     try {
       const { data: { email: Email, name, role, token } } = await instance
         .post('/login', { email, password });
-      localStorage.setItem('CART', JSON.stringify([]));
+      localStorage.setItem('cart', JSON.stringify([]));
 
       saveLogin({ Email, name, role, token });
 

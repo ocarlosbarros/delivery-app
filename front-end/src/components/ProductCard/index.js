@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { string, number } from 'prop-types';
 
 import * as S from './styled';
+import { CartContext } from '../../context/CartContext';
 
 export default function ProductCard({ image, name, price, id }) {
   const [qty, setQty] = useState(0);
+  const { setCart } = useContext(CartContext);
 
   useEffect(() => {
-    let cartArray = JSON.parse(localStorage.getItem('CART'));
+    let cartArray = JSON.parse(localStorage.getItem('cart'));
 
     const exist = cartArray.some((item) => item.id === id);
 
     if (!exist && qty > 0) {
-      localStorage.setItem('CART', JSON.stringify(
+      localStorage.setItem('cart', JSON.stringify(
         [...cartArray, { id, price, quantity: qty }],
       ));
+      setCart([...cartArray, { id, price, quantity: qty }]);
     } else {
-      cartArray = JSON.parse(localStorage.getItem('CART'));
+      cartArray = JSON.parse(localStorage.getItem('cart'));
       const cartReplace = cartArray.map((item) => {
         if (item.id === id) {
           item.quantity = qty;
         }
         return item;
       }).filter((item) => item.quantity !== 0);
-
-      localStorage.setItem('CART', JSON.stringify(cartReplace));
+      localStorage.setItem('cart', JSON.stringify(cartReplace));
+      setCart(cartReplace);
+      // setCart((previous) => [...previous, { id, price, quantity: qty }]);
     }
-  }, [qty, id, price]);
+  }, [qty, id, price, setCart]);
 
   const handleIncrement = () => {
     setQty((previousValue) => {
@@ -70,8 +74,11 @@ export default function ProductCard({ image, name, price, id }) {
           -
         </S.NegativeButton>
         <S.QtyInput
+          type="number"
           value={ qty }
-          readOnly
+          onChange={ ({ target: { value } }) => {
+            if (value > 0) setQty(parseInt(value, 10));
+          } }
           data-testid={ `customer_products__input-card-quantity-${id}` }
         />
         <S.PositiveButton
