@@ -15,9 +15,9 @@ export default function ProductCard({ image, name, price, id }) {
 
     if (!exist && qty > 0) {
       localStorage.setItem('cart', JSON.stringify(
-        [...cartArray, { id, price, quantity: qty }],
+        [...cartArray, { id, name, price, quantity: qty }],
       ));
-      setCart([...cartArray, { id, price, quantity: qty }]);
+      setCart([...cartArray, { id, name, price, quantity: qty }]);
     } else {
       cartArray = JSON.parse(localStorage.getItem('cart'));
       const cartReplace = cartArray.map((item) => {
@@ -30,7 +30,7 @@ export default function ProductCard({ image, name, price, id }) {
       setCart(cartReplace);
       // setCart((previous) => [...previous, { id, price, quantity: qty }]);
     }
-  }, [qty, id, price, setCart]);
+  }, [qty, id, price, name, setCart]);
 
   const handleIncrement = () => {
     setQty((previousValue) => {
