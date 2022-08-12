@@ -17,3 +17,6 @@ export const saveLogin = ({ name, Email: email, role, token }) => localStorage
 export const logout = () => {
   localStorage.removeItem('user');
 };
+
+export const totalPrice = (cart) => (cart.length ? cart
+  .reduce((a, b) => a + (b.price * b.quantity), 0) : cart.length);
