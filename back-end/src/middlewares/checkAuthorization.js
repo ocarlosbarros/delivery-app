@@ -6,9 +6,8 @@ const checkAuthorization = async (request, response, next) => {
   const SECRET = await getSecret();
   try {
     const { authorization } = request.headers;
-
     if (!authorization) {
-        return response.status(StatusCodes.UNAUTHORIZED).json({ message: 'Token not found' });
+      return response.status(StatusCodes.UNAUTHORIZED).json({ message: 'Token not found' });
     }
 
     const { password, ...user } = jwt.verify(authorization, SECRET);
