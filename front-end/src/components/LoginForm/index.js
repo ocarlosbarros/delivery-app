@@ -27,11 +27,11 @@ export default function LoginForm() {
     /* localStorage.setItem('CART', JSON.stringify([]));
     navigate('/customer/products'); */
     try {
-      const { data: { email: Email, name, role, token } } = await instance
+      const { data: { email: Email, name, role, token, id } } = await instance
         .post('/login', { email, password });
       localStorage.setItem('cart', JSON.stringify([]));
 
-      saveLogin({ Email, name, role, token });
+      saveLogin({ Email, name, role, token, id });
 
       navigate('/customer/products');
     } catch (e) {

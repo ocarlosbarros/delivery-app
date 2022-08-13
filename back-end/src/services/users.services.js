@@ -19,6 +19,13 @@ const createUser = async (body) => {
   return newUser;
 };
 
+const getSellers = async () => user
+  .findAll({
+    where: { role: 'seller' },
+    attributes: ['id', 'name', 'email'],
+  });
+
 module.exports = {
   createUser,
+  getSellers,
 };

@@ -14,4 +14,9 @@ const createUser = rescue(async (req, res, _next) => {
   return res.status(StatusCodes.CREATED).json(newUser.dataValues);
 });
 
-module.exports = { createUser };
+const getSellers = async (req, res, _next) => {
+  const sellers = await userService.getSellers();
+  return res.status(StatusCodes.OK).json(sellers);
+};
+
+module.exports = { createUser, getSellers };
