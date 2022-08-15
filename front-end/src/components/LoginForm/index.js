@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,16 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  const local = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    if (local) {
+      const { role } = local;
+      if (role === 'customer') return navigate('/customer/products');
+      return navigate('seller/orders');
+    }
+  }, [local, navigate]);
 
   const NOT_FOUND = 404;
 
@@ -33,7 +43,8 @@ export default function LoginForm() {
 
       saveLogin({ Email, name, role, token, id });
 
-      navigate('/customer/products');
+      if (role === 'customer') return navigate('/customer/products');
+      return navigate('/sellers/orders');
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);
     }
