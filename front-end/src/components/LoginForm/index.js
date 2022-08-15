@@ -41,7 +41,7 @@ export default function LoginForm() {
         .post('/login', { email, password });
       localStorage.setItem('cart', JSON.stringify([]));
 
-      saveLogin({ Email, name, role, token, id });
+      saveLogin({ email, name, role, token, id });
 
       if (role === 'customer') return navigate('/customer/products');
       return navigate('/sellers/orders');
