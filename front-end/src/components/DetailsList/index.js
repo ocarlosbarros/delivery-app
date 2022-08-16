@@ -61,6 +61,7 @@ export default function DetailsList() {
       </S.DetailStatus>
       <S.DetailDelivered
         data-testid="customer_order_details__button-delivery-check"
+        disabled={ data.status === 'Pendente' }
       >
         Marcar como entregue
       </S.DetailDelivered>
