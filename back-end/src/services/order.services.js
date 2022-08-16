@@ -1,6 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 
 const { sale } = require('../database/models');
+const { product } = require('../database/models');
 const { salesProducts } = require('../database/models');
 
 const adminService = require('./admin.services');
@@ -38,10 +39,30 @@ const getAll = async (userId) => {
 };
 
 const getById = async (id) => {
-    const orders = await sale.findOne({
-        where: { id },
+    /* const orders = await sale.findByPk(
+        id, {
+            include: [
+                {
+                    model: product,
+                    as: 'product'
+                },
+                {
+                    model: salesProducts,
+                    as: 'salesProducts',
+                    through: { attributes: [] }
+                }
+            ]
+        }
+    ); */
+    
+    const orders = await sale.findOne({ where: { id, productId: 1 },
+        include: [
+        { model: product, as: 'product', attributes: { exclude: ['id'] } },
+        { model: salesProducts, as: 'salesProducts', attributes: { exclude: ['id'] } },
+    ],
     });
-
+    console.log(orders);
+    // console.table(orders);
     return orders;
 };
 
