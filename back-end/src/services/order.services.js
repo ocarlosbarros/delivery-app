@@ -41,11 +41,9 @@ const getById = async (id) => {
     const orders = await sale.findOne({
         where: { id },
     });
-    console.log(orders)
-    
+
     return orders;
 };
-
 
 module.exports = {
     create,
