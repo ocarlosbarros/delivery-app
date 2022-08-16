@@ -27,7 +27,9 @@ ReactDOM.render(
       <Route element={ <Register /> } path="/register" />
       <Route element={ <Products /> } path="/customer/products" />
       <Route element={ <Checkout /> } path="/customer/checkout" />
-      <Route element={ <Orders />} path="/customer/orders/:id" />
+      <Route element={ <Orders />} path="/customer/orders" exact>
+        <Route element={ <Orders />} path="/customer/orders/:id" />
+      </Route>
     </Routes>
   </HistoryRouter>,
   rootElement,
