@@ -9,7 +9,7 @@ export const DetailId = styled.span`
 
 `;
 
-export const DetailName = styled.span`
+export const DetailStatus = styled.span`
 
 `;
 
@@ -18,10 +18,6 @@ export const DatePriceWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const DetailUnitPrice = styled.span``;
-
-export const DetailQuantity = styled.span``;
-
-export const DetailSubTotal = styled.span``;
+export const DetailDate = styled.span``;
 
 export const DetailPrice = styled.span``;

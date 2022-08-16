@@ -3,33 +3,44 @@ import { string, number } from 'prop-types';
 
 import * as S from './styled';
 
-export default function OrderDetail({ index, status, date, totalPrice }) {
-  const newDate = new Date(date);
+export default function OrderDetail({
+  index, name, quantity, price,
+}) {
   return (
     <S.DetailCard>
       <S.DetailId
-        data-testid={ `customer_orders__element-order-id-${index}` }
+        data-testid={ `customer_order_details__element-order-table-item-number-${index}` }
       >
         { index }
       </S.DetailId>
-      <S.DetailStatus
-        data-testid={ `customer_orders__element-delivery-status-${index}` }
+      <S.DetailName
+        data-testid={ `customer_order_details__element-order-table-name-${index}` }
       >
-        { status }
-      </S.DetailStatus>
+        { name }
+      </S.DetailName>
 
       <S.DatePriceWrapper>
-        <S.DetailDate
-          data-test-id={ `customer_orders__element-order-date-${index}` }
+        <S.DetailQuantity
+          data-test-id={ `customer_order_details__element-order-table-quantity-${index}` }
         >
-          { newDate.toLocaleDateString() }
-        </S.DetailDate>
-        <S.DetailPrice
-          data-testid={ `customer_orders__element-card-price-${index}` }
+          { quantity }
+        </S.DetailQuantity>
+        <S.DetailUnitPrice
+          data-testid={
+            `customer_order_details__element-order-table-unit-price-${index}`
+          }
         >
-          { (Number(totalPrice))
+          { (Number(price))
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-        </S.DetailPrice>
+        </S.DetailUnitPrice>
+        <S.DetailSubTotal
+          data-testid={
+            `customer_order_details__element-order-table-sub-total-${index}`
+          }
+        >
+          { (Number(price) * quantity)
+            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+        </S.DetailSubTotal>
       </S.DatePriceWrapper>
 
     </S.DetailCard>

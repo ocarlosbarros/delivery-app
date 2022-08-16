@@ -15,6 +15,9 @@ export default function NavBar() {
     <S.NavWrapper>
       <S.NavList>
         <S.NavItem
+          onClick={ () => {
+            navigate('/customer/products');
+          } }
           data-testid="customer_products__element-navbar-link-products"
         >
           Produtos
