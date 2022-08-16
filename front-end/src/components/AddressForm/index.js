@@ -46,10 +46,9 @@ export default function AddressForm() {
       products,
     };
 
-    await instance
+    const { data: { id: orderId } } = await instance
       .post('/customer/orders', sale, { headers: { authorization } });
-
-    navigate(`/customer/orders/${id}`);
+    navigate(`/customer/orders/${orderId}`);
   };
 
   return (
