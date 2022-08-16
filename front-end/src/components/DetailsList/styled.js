@@ -11,3 +11,5 @@ export const DetailDate = styled.span``;
 export const DetailStatus = styled.span``;
 
 export const DetailDelivered = styled.button``;
+
+export const DetailTotalPrice = styled.span``;

@@ -42,7 +42,6 @@ export default function OrderDetail({
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
         </S.DetailSubTotal>
       </S.DatePriceWrapper>
-
     </S.DetailCard>
   );
 }

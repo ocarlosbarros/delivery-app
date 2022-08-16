@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import OrderDetail from '../OrderDetail';
+import { totalPrice } from '../../utils';
 
 import * as S from './styled';
 
@@ -9,6 +10,8 @@ export default function DetailsList() {
   const [data, setData] = useState();
   const { token: authorization } = JSON.parse(localStorage.getItem('user'));
   const { id } = useParams();
+  const total = totalPrice(data ? data.products
+    .map(({ price, salesProducts: { quantity } }) => ({ price, quantity })) : 0);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -38,7 +41,9 @@ export default function DetailsList() {
     <S.DetailHeader>
       <S.DetailOrderId
         data-testid="customer_order_details__element-order-details-label-order-id"
-      />
+      >
+        { `Pedido nº ${id}` }
+      </S.DetailOrderId>
       <S.DetailSeller
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
@@ -47,7 +52,7 @@ export default function DetailsList() {
       <S.DetailDate
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { new Date(data.saleDate).toLocaleDateString() }
+        { new Date(data.saleDate).toLocaleDateString('pt-BR') }
       </S.DetailDate>
       <S.DetailStatus
         data-testid="customer_order_details__element-order-details-label-delivery-status"
@@ -75,6 +80,12 @@ export default function DetailsList() {
         ))
 
       }
+      <S.DetailTotalPrice
+        data-testid="customer_order_details__element-order-total-price"
+      >
+        { (total)
+          .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+      </S.DetailTotalPrice>
     </S.DetailHeader>
   ) : <h1>Loading</h1>;
 }

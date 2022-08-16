@@ -27,7 +27,7 @@ export default function OrderCheckout({ index, id, status, date, totalPrice }) {
         <S.DetailDate
           data-testid={ `customer_orders__element-order-date-${index}` }
         >
-          { new Date(date).toLocaleDateString() }
+          { new Date(date).toLocaleDateString('pt-BR') }
         </S.DetailDate>
         <S.DetailPrice
           data-testid={ `customer_orders__element-card-price-${index}` }
