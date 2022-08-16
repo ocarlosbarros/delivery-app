@@ -47,9 +47,9 @@ const getById = async (id) => {
                 {
                     model: user,
                     as: 'seller',
-                }
+                },
             ],
-        }
+        },
     );
 
     return orders;
