@@ -9,7 +9,7 @@ export default function DetailsList() {
   const [data, setData] = useState();
   const { token: authorization } = JSON.parse(localStorage.getItem('user'));
   const { id, role } = useParams();
-  const [orderStatus, setOrderStatus] = useState('Pendente');
+  const [orderStatus, setOrderStatus] = useState();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -28,23 +28,23 @@ export default function DetailsList() {
         headers: { authorization },
       });
 
-      setData({
-        saleDate,
-        products,
-        seller,
-        status,
-        totalPrice: Number(totalPrice).toLocaleString('pt-BR', {
-          style: 'currency', currency: 'BRL',
-        }),
+      setData(() => {
+        setOrderStatus(status);
+        return {
+          saleDate,
+          products,
+          seller,
+          status,
+          totalPrice: Number(totalPrice).toLocaleString('pt-BR', {
+            style: 'currency', currency: 'BRL',
+          }),
+        };
       });
     };
     fetchOrders();
   }, [authorization, id, role]);
 
-  const handleStatusChange = async (e) => {
-    e.preventDefault();
-
-    const status = e.target.value;
+  const handleStatusChange = async (status) => {
     const instance = axios.create({
       baseURL: 'http://localhost:3001/',
     });
@@ -54,6 +54,21 @@ export default function DetailsList() {
     });
     console.log(poxe);
     setOrderStatus(status);
+  };
+
+  const handlePreparing = (e) => {
+    e.preventDefault();
+    handleStatusChange('Preparando');
+  };
+
+  const handleDelivering = (e) => {
+    e.preventDefault();
+    handleStatusChange('Em Trânsito');
+  };
+
+  const handleDeliveried = (e) => {
+    e.preventDefault();
+    handleStatusChange('Entregue');
   };
 
   return data ? (
@@ -83,8 +98,9 @@ export default function DetailsList() {
             <S.DetailDelivered
               data-testid={ `${role}_order_details__button-delivery-check` }
               disabled={ data.status === 'Pendente' }
+              onClick={ handleDeliveried }
             >
-              Marcar como entregue
+              MARCAR COMO ENTREGUE
             </S.DetailDelivered>
           </>
         ) : (
@@ -92,22 +108,20 @@ export default function DetailsList() {
             <S.DetailPrepareOrder
               disabled={ orderStatus !== 'Pendente' }
               type="button"
-              value="Preparando"
               data-testid={
                 `${role}_order_details__button-preparing-check`
               }
-              onClick={ (e) => handleStatusChange(e) }
+              onClick={ handlePreparing }
             >
               PREPARAR PEDIDO
             </S.DetailPrepareOrder>
             <S.DetailDeliverOrder
               disabled={ orderStatus !== 'Preparando' }
               type="button"
-              value="Em Trânsito"
               data-testid={
                 `${role}_order_details__button-dispatch-check`
               }
-              onClick={ (e) => handleStatusChange(e) }
+              onClick={ handleDelivering }
             >
               SAIU PARA ENTREGA
             </S.DetailDeliverOrder>
