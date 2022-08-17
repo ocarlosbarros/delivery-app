@@ -1,4 +1,4 @@
-const orderRoute = require('express').Router({mergeParams: true});
+const orderRoute = require('express').Router({ mergeParams: true });
 const { orderController } = require('../controllers');
 
 orderRoute.post('/', (req, res, next) => 
