@@ -28,7 +28,7 @@ export default function NavBar() {
         }
         <S.NavItem
           onClick={ () => {
-            navigate('/customer/orders');
+            navigate(`/${local.role}/orders`);
           } }
           data-testid="customer_products__element-navbar-link-orders"
         >

@@ -36,7 +36,7 @@ const getAll = async (id, role) => {
     return orders;
 };
 
-const getById = async (id) => {
+const getById = async (id, role) => {
     const orders = await sale.findByPk(
         id, {
             include: [
@@ -46,12 +46,12 @@ const getById = async (id) => {
                 },
                 {
                     model: user,
-                    as: 'seller',
+                    as: `${role}`,
                 },
             ],
         },
     );
-
+    console.log(orders);
     return orders;
 };
 

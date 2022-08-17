@@ -21,8 +21,9 @@ const getAll = rescue(async (req, res, _next) => {
 
 const getById = rescue(async (req, res, _next) => {
    const { id } = req.params;
-
-   const orders = await orderService.getById(id);
+   const { role } = req.params;
+   const column = role === 'customer' ? 'seller' : 'user';
+   const orders = await orderService.getById(id, column);
 
    return res.status(StatusCodes.OK).json(orders);
 });
