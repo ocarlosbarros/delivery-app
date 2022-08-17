@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +16,16 @@ export default function LoginForm() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
+  const local = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    if (local) {
+      const { role } = local;
+      if (role === 'customer') return navigate('/customer/products');
+      return navigate('seller/orders');
+    }
+  }, [local, navigate]);
+
   const NOT_FOUND = 404;
 
   const disabled = !isValidLogin({ email, password });
@@ -31,9 +41,10 @@ export default function LoginForm() {
         .post('/login', { email, password });
       localStorage.setItem('cart', JSON.stringify([]));
 
-      saveLogin({ Email, name, role, token, id });
+      saveLogin({ email: Email, name, role, token, id });
 
-      navigate('/customer/products');
+      if (role === 'customer') return navigate('/customer/products');
+      return navigate('/sellers/orders');
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);
     }

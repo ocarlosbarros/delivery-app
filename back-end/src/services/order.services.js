@@ -1,7 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 
-const { sale } = require('../database/models');
-const { salesProducts } = require('../database/models');
+const { sale, product, user, salesProducts } = require('../database/models');
 
 const adminService = require('./admin.services');
 
@@ -29,16 +28,35 @@ const create = async (order) => {
     return saleId;
 };
 
-const getById = async (userId) => {
+const getAll = async (userId) => {
     const orders = await sale.findAll({
         where: { userId },
-        attributes: { exclude: ['userId', 'sellerId', 'deliveryAddress', 'deliveryNumber'] },
     });
     
     return orders;
 };
 
+const getById = async (id) => {
+    const orders = await sale.findByPk(
+        id, {
+            include: [
+                {
+                    model: product,
+                    as: 'products',
+                },
+                {
+                    model: user,
+                    as: 'seller',
+                },
+            ],
+        },
+    );
+
+    return orders;
+};
+
 module.exports = {
     create,
+    getAll,
     getById,
 };

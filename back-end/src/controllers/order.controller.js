@@ -11,8 +11,16 @@ const create = rescue(async (req, res, _next) => {
    return res.status(StatusCodes.CREATED).json({ id });
 });
 
+const getAll = rescue(async (req, res, _next) => {
+   const { id } = req.user;
+   const orders = await orderService.getAll(id);
+
+   return res.status(StatusCodes.OK).json(orders);
+});
+
 const getById = rescue(async (req, res, _next) => {
    const { id } = req.params;
+
    const orders = await orderService.getById(id);
 
    return res.status(StatusCodes.OK).json(orders);
@@ -21,4 +29,5 @@ const getById = rescue(async (req, res, _next) => {
 module.exports = {
    create,
    getById,
+   getAll,
 };

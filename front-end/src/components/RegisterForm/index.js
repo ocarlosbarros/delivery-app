@@ -7,7 +7,7 @@ import InputText from '../InputForm';
 import * as S from './styled';
 import ErrorCard from '../ErrorCard';
 import ButtonForm from '../ButtonForm';
-import { isValidRegister } from '../../utils';
+import { isValidRegister, saveLogin } from '../../utils';
 
 export default function RegisterForm() {
   const [name, setName] = useState('');
@@ -25,7 +25,9 @@ export default function RegisterForm() {
 
   const handleRegister = async () => {
     try {
-      await instance.post('/register', { email, password, name });
+      const { data } = await instance
+        .post('/register', { email, password, name });
+      saveLogin(data);
       navigate('/customer/products');
     } catch (e) {
       if (e.response.status === CONFLICT) setError(true);

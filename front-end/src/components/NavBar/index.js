@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../utils';
 import * as S from './styled';
 
 export default function NavBar() {
-  const { name } = JSON.parse(localStorage.getItem('user'));
+  const local = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
 
-  return (
+  useEffect(() => {
+    if (!local) navigate('/login');
+  }, [local, navigate]);
+
+  return local && (
     <S.NavWrapper>
       <S.NavList>
         <S.NavItem
+          onClick={ () => {
+            navigate('/customer/products');
+          } }
           data-testid="customer_products__element-navbar-link-products"
         >
           Produtos
         </S.NavItem>
         <S.NavItem
+          onClick={ () => {
+            navigate('/customer/orders');
+          } }
           data-testid="customer_products__element-navbar-link-orders"
         >
           Meus Pedidos
@@ -23,7 +33,7 @@ export default function NavBar() {
         <S.NavItem
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          { name }
+          { local.name }
         </S.NavItem>
         <S.NavItem
           onClick={ () => {

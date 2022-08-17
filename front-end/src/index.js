@@ -14,6 +14,7 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import Products from './screens/Products';
 import Checkout from './screens/Checkout';
+import Orders from './screens/Orders';
 
 const history = createBrowserHistory({ window });
 
@@ -26,6 +27,9 @@ ReactDOM.render(
       <Route element={ <Register /> } path="/register" />
       <Route element={ <Products /> } path="/customer/products" />
       <Route element={ <Checkout /> } path="/customer/checkout" />
+      <Route element={ <Orders />} path="/customer/orders" >
+        <Route element={ <Orders />} path="/customer/orders/:id" />
+      </Route>
     </Routes>
   </HistoryRouter>,
   rootElement,

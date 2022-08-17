@@ -6,7 +6,7 @@ const authenticate = async (user) => {
 
     if (!secret) throw new Error();
     
-    const token = jwt.sign(user, secret, { expiresIn: '15m' });
+    const token = jwt.sign(user, secret);
     return token;
 };
 
