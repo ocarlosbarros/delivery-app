@@ -9,14 +9,15 @@ export default function DetailsList() {
   const [data, setData] = useState();
   const { token: authorization } = JSON.parse(localStorage.getItem('user'));
   const { id, role } = useParams();
+  const [orderStatus, setOrderStatus] = useState('Pendente');
 
   useEffect(() => {
     const fetchOrders = async () => {
       const instance = axios.create({
         baseURL: 'http://localhost:3001/',
       });
-
       const endpoint = `${role}/orders/${id}`;
+
       const { data: {
         saleDate,
         products,
@@ -26,12 +27,7 @@ export default function DetailsList() {
       } } = await instance.get(endpoint, {
         headers: { authorization },
       });
-      console.log('obj--> ', {
-        saleDate,
-        products,
-        seller,
-        status,
-      });
+
       setData({
         saleDate,
         products,
@@ -44,7 +40,22 @@ export default function DetailsList() {
     };
     fetchOrders();
   }, [authorization, id, role]);
-  console.table('data --> ', data);
+
+  const handleStatusChange = async (e) => {
+    e.preventDefault();
+
+    const status = e.target.value;
+    const instance = axios.create({
+      baseURL: 'http://localhost:3001/',
+    });
+    const endpoint = `${role}/orders/${id}`;
+    const { data: poxe } = await instance.patch(endpoint, { status }, {
+      headers: { authorization },
+    });
+    console.log(poxe);
+    setOrderStatus(status);
+  };
+
   return data ? (
     <S.DetailHeader>
       <S.DetailOrderId
@@ -61,22 +72,46 @@ export default function DetailsList() {
       </S.DetailDate>
       {
         role === 'customer' ? (
-          <S.DetailSeller
-            data-testid={
-              `${role}_order_details__element-order-details-label-seller-name`
-            }
-          >
-            { data.seller.name }
-          </S.DetailSeller>
+          <>
+            <S.DetailSeller
+              data-testid={
+                `${role}_order_details__element-order-details-label-seller-name`
+              }
+            >
+              { data.seller.name }
+            </S.DetailSeller>
+            <S.DetailDelivered
+              data-testid={ `${role}_order_details__button-delivery-check` }
+              disabled={ data.status === 'Pendente' }
+            >
+              Marcar como entregue
+            </S.DetailDelivered>
+          </>
         ) : (
-          <S.DetailPrepareOrder
-            type="button"
-            data-testid={
-              `${role}_seller_order_details__button-preparing-check`
-            }
-          >
-            Preparar Pedido
-          </S.DetailPrepareOrder>
+          <>
+            <S.DetailPrepareOrder
+              disabled={ orderStatus !== 'Pendente' }
+              type="button"
+              value="Preparando"
+              data-testid={
+                `${role}_order_details__button-preparing-check`
+              }
+              onClick={ (e) => handleStatusChange(e) }
+            >
+              PREPARAR PEDIDO
+            </S.DetailPrepareOrder>
+            <S.DetailDeliverOrder
+              disabled={ orderStatus !== 'Preparando' }
+              type="button"
+              value="Em Trânsito"
+              data-testid={
+                `${role}_order_details__button-dispatch-check`
+              }
+              onClick={ (e) => handleStatusChange(e) }
+            >
+              SAIU PARA ENTREGA
+            </S.DetailDeliverOrder>
+          </>
         )
       }
       <S.DetailStatus
@@ -84,14 +119,8 @@ export default function DetailsList() {
           `${role}_order_details__element-order-details-label-delivery-status`
         }
       >
-        { data.status }
+        { orderStatus }
       </S.DetailStatus>
-      <S.DetailDelivered
-        data-testid={ `${role}_order_details__button-delivery-check` }
-        disabled={ data.status === 'Pendente' }
-      >
-        Marcar como entregue
-      </S.DetailDelivered>
       {
         data.products.map(({
           name,

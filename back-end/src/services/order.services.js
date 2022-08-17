@@ -51,12 +51,19 @@ const getById = async (id, role) => {
             ],
         },
     );
-    console.log(orders);
     return orders;
+};
+
+const updateStatus = async (id, status) => {
+    const order = await sale.update({ status }, { 
+        where: { id },
+    });
+    return order;
 };
 
 module.exports = {
     create,
     getAll,
     getById,
+    updateStatus,
 };
