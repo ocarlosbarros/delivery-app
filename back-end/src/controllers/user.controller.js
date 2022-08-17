@@ -3,10 +3,15 @@ const { StatusCodes } = require('http-status-codes');
 const { userService } = require('../services');
 
 const createUser = rescue(async (req, res, _next) => {
-  const { name, email, role = 'customer', password } = req.body;
-  const result = await userService.createUser({ name, email, role, password });
+  const { name, email, password: userPass } = req.body;
+  
+  let { role } = req.body;
+  role = role || 'customer';
 
-  return res.status(StatusCodes.CREATED).json(result);
+  const { password, ...newUser } = await userService
+  .createUser({ name, email, role, password: userPass });
+  
+  return res.status(StatusCodes.CREATED).json(newUser.dataValues);
 });
 
 const getSellers = async (req, res, _next) => {
