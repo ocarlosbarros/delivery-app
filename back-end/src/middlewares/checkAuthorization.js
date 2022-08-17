@@ -11,7 +11,16 @@ const checkAuthorization = async (request, response, next) => {
     }
 
     const { password, ...user } = jwt.verify(authorization, SECRET);
+    
+    const { role } = user;
+    const [, route] = request.baseUrl.split('/', 2);
+    
+    if (route === 'admin' && role !== 'administrator') {
+        return response.status(StatusCodes.UNAUTHORIZED).json({ message: 'Access denied' });
+    }
+    
     request.user = user;
+
     return next();
   } catch (error) {
     return response.status(StatusCodes.UNAUTHORIZED).json({ message: 'Expired or Invalid Token' });
