@@ -4,30 +4,30 @@ import { string, number } from 'prop-types';
 import * as S from './styled';
 
 export default function OrderDetail({
-  index, name, quantity, price,
+  index, name, quantity, price, role,
 }) {
   return (
     <S.DetailCard>
       <S.DetailId
-        data-testid={ `customer_order_details__element-order-table-item-number-${index}` }
+        data-testid={ `${role}_order_details__element-order-table-item-number-${index}` }
       >
         { index }
       </S.DetailId>
       <S.DetailName
-        data-testid={ `customer_order_details__element-order-table-name-${index}` }
+        data-testid={ `${role}_order_details__element-order-table-name-${index}` }
       >
         { name }
       </S.DetailName>
 
       <S.DatePriceWrapper>
         <S.DetailQuantity
-          data-test-id={ `customer_order_details__element-order-table-quantity-${index}` }
+          data-test-id={ `${role}_order_details__element-order-table-quantity-${index}` }
         >
           { quantity }
         </S.DetailQuantity>
         <S.DetailUnitPrice
           data-testid={
-            `customer_order_details__element-order-table-unit-price-${index}`
+            `${role}_order_details__element-order-table-unit-price-${index}`
           }
         >
           { (Number(price))
@@ -35,7 +35,7 @@ export default function OrderDetail({
         </S.DetailUnitPrice>
         <S.DetailSubTotal
           data-testid={
-            `customer_order_details__element-order-table-sub-total-${index}`
+            `${role}_order_details__element-order-table-sub-total-${index}`
           }
         >
           { (Number(price) * quantity)

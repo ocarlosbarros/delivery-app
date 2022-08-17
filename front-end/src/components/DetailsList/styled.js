@@ -13,3 +13,5 @@ export const DetailStatus = styled.span``;
 export const DetailDelivered = styled.button``;
 
 export const DetailTotalPrice = styled.span``;
+
+export const DetailPrepareOrder = styled.button``;

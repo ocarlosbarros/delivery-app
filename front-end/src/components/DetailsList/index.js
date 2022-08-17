@@ -9,7 +9,8 @@ import * as S from './styled';
 export default function DetailsList() {
   const [data, setData] = useState();
   const { token: authorization } = JSON.parse(localStorage.getItem('user'));
-  const { id } = useParams();
+  const { id, role } = useParams();
+
   const total = totalPrice(data ? data.products
     .map(({ price, salesProducts: { quantity } }) => ({ price, quantity })) : 0);
 
@@ -40,27 +41,44 @@ export default function DetailsList() {
   return data ? (
     <S.DetailHeader>
       <S.DetailOrderId
-        data-testid="customer_order_details__element-order-details-label-order-id"
+        data-testid={ `${role}_order_details__element-order-details-label-order-id` }
       >
-        { `Pedido nº ${id}` }
+        { `Pedido ${id}` }
       </S.DetailOrderId>
-      <S.DetailSeller
-        data-testid="customer_order_details__element-order-details-label-seller-name"
-      >
-        { data.seller.name }
-      </S.DetailSeller>
       <S.DetailDate
-        data-testid="customer_order_details__element-order-details-label-order-date"
+        data-testid={ `${role}_order_details__element-order-details-label-order-date` }
       >
         { new Date(data.saleDate).toLocaleDateString('pt-BR') }
       </S.DetailDate>
+      {
+        role === 'customer' ? (
+          <S.DetailSeller
+            data-testid={
+              `${role}_order_details__element-order-details-label-seller-name`
+            }
+          >
+            { data.seller.name }
+          </S.DetailSeller>
+        ) : (
+          <S.DetailPrepareOrder
+            type="button"
+            data-testid={
+              `${role}_seller_order_details__button-preparing-check`
+            }
+          >
+            Preparar Pedido
+          </S.DetailPrepareOrder>
+        )
+      }
       <S.DetailStatus
-        data-testid="customer_order_details__element-order-details-label-delivery-status"
+        data-testid={
+          `${role}_order_details__element-order-details-label-delivery-status`
+        }
       >
         { data.status }
       </S.DetailStatus>
       <S.DetailDelivered
-        data-testid="customer_order_details__button-delivery-check"
+        data-testid={ `${role}_order_details__button-delivery-check` }
         disabled={ data.status === 'Pendente' }
       >
         Marcar como entregue
@@ -72,6 +90,7 @@ export default function DetailsList() {
           price,
         }, index) => (
           <OrderDetail
+            role={ role }
             key={ index }
             index={ index + 1 }
             name={ name }
