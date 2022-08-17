@@ -20,15 +20,23 @@ const getAll = rescue(async (req, res, _next) => {
 });
 
 const getById = rescue(async (req, res, _next) => {
-   const { id } = req.params;
-
-   const orders = await orderService.getById(id);
+   const { id, role } = req.params;
+   const column = role === 'customer' ? 'seller' : 'user';
+   const orders = await orderService.getById(id, column);
 
    return res.status(StatusCodes.OK).json(orders);
+});
+
+const updateStatus = rescue(async (req, res, _next) => {
+   const { id } = req.params;
+   const { status } = req.body;
+   const [, sale] = await orderService.updateStatus(id, status);
+   return res.status(StatusCodes.OK).json({ updatedSale: sale });
 });
 
 module.exports = {
    create,
    getById,
    getAll,
+   updateStatus,
 };

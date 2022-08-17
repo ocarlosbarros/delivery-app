@@ -36,7 +36,7 @@ const getAll = async (id, role) => {
     return orders;
 };
 
-const getById = async (id) => {
+const getById = async (id, role) => {
     const orders = await sale.findByPk(
         id, {
             include: [
@@ -46,17 +46,24 @@ const getById = async (id) => {
                 },
                 {
                     model: user,
-                    as: 'seller',
+                    as: `${role}`,
                 },
             ],
         },
     );
-
     return orders;
+};
+
+const updateStatus = async (id, status) => {
+    const order = await sale.update({ status }, { 
+        where: { id },
+    });
+    return order;
 };
 
 module.exports = {
     create,
     getAll,
     getById,
+    updateStatus,
 };

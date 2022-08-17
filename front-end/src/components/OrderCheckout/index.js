@@ -37,7 +37,13 @@ export default function OrderCheckout({ index,
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
         </S.DetailPrice>
       </S.DatePriceWrapper>
-      { role === 'seller' && <S.DetailAddress>{ address }</S.DetailAddress>}
+      { role === 'seller' && (
+        <S.DetailAddress
+          data-testid={ `seller_orders__element-card-address-${index}` }
+        >
+          { address }
+        </S.DetailAddress>
+      )}
     </S.DetailCard>
   );
 }

@@ -17,13 +17,12 @@ export default function OrderList() {
       const { data } = await instance.get(endpoint, {
         headers: { authorization },
       });
-      console.table(data);
-      setOrders(data.length ? data : [data]);
+      setOrders(data);
     };
     fetchOrders();
   }, [authorization, role]);
 
-  return (
+  return orders.length ? (
     orders.map(({
       status,
       saleDate,
@@ -43,5 +42,5 @@ export default function OrderList() {
         totalPrice={ totalPrice }
       />
     ))
-  );
+  ) : <h1>No content</h1>;
 }

@@ -7,6 +7,9 @@ orderRoute.post('/', (req, res, next) =>
 orderRoute.get('/:id', (req, res, next) => 
     orderController.getById(req, res, next));
 
+orderRoute.patch('/:id', (req, res, next) => 
+    orderController.updateStatus(req, res, next));
+
 orderRoute.get('/', (req, res, next) =>
     orderController.getAll(req, res, next));
 

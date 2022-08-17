@@ -21,7 +21,8 @@ export default function LoginForm() {
   useEffect(() => {
     if (local) {
       const { role } = local;
-      return navigate(`/${role}/orders`);
+      const resource = role === 'customer' ? 'products' : 'orders';
+      return navigate(`/${role}/${resource}`);
     }
   }, [local, navigate]);
 
