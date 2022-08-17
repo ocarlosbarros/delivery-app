@@ -21,3 +21,5 @@ export const DatePriceWrapper = styled.div`
 export const DetailDate = styled.span``;
 
 export const DetailPrice = styled.span``;
+
+export const DetailAddress = styled.span``;

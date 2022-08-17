@@ -21,8 +21,7 @@ export default function LoginForm() {
   useEffect(() => {
     if (local) {
       const { role } = local;
-      if (role === 'customer') return navigate('/customer/products');
-      return navigate('seller/orders');
+      return navigate(`/${role}/orders`);
     }
   }, [local, navigate]);
 
@@ -34,8 +33,6 @@ export default function LoginForm() {
   });
 
   const handleLogin = async () => {
-    /* localStorage.setItem('CART', JSON.stringify([]));
-    navigate('/customer/products'); */
     try {
       const { data: { email: Email, name, role, token, id } } = await instance
         .post('/login', { email, password });
@@ -44,7 +41,7 @@ export default function LoginForm() {
       saveLogin({ email: Email, name, role, token, id });
 
       if (role === 'customer') return navigate('/customer/products');
-      return navigate('/sellers/orders');
+      return navigate('/seller/orders');
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);
     }

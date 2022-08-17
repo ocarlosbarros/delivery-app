@@ -11,7 +11,7 @@ const { checkAdminAuthorization } = require('../middlewares');
 Router.use('/login', loginRoute);
 Router.use('/register', registerRoute);
 Router.use('/customer/products', productRoute);
-Router.use('/customer/orders', checkAuthorization, orderRoute);
+Router.use('/:role/orders', checkAuthorization, orderRoute);
 Router.use('/admin/manage', checkAuthorization, checkAdminAuthorization, adminRoute);
 
 Router.use('/images', express.static('public'));

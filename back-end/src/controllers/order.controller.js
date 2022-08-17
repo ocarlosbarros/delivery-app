@@ -13,8 +13,9 @@ const create = rescue(async (req, res, _next) => {
 
 const getAll = rescue(async (req, res, _next) => {
    const { id } = req.user;
-   const orders = await orderService.getAll(id);
-
+   const { role } = req.params;
+   const column = role === 'customer' ? 'userId' : 'sellerId';
+   const orders = await orderService.getAll(id, column);
    return res.status(StatusCodes.OK).json(orders);
 });
 
