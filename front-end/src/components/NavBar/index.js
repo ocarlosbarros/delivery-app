@@ -14,14 +14,18 @@ export default function NavBar() {
   return local && (
     <S.NavWrapper>
       <S.NavList>
-        <S.NavItem
-          onClick={ () => {
-            navigate('/customer/products');
-          } }
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          Produtos
-        </S.NavItem>
+        {
+          local.role === 'customer' && (
+            <S.NavItem
+              onClick={ () => {
+                navigate('/customer/products');
+              } }
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              Produtos
+            </S.NavItem>
+          )
+        }
         <S.NavItem
           onClick={ () => {
             navigate('/customer/orders');

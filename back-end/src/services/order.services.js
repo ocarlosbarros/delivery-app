@@ -28,9 +28,9 @@ const create = async (order) => {
     return saleId;
 };
 
-const getAll = async (userId) => {
+const getAll = async (id, role) => {
     const orders = await sale.findAll({
-        where: { userId },
+        where: { [role]: id },
     });
     
     return orders;

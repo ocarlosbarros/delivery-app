@@ -4,7 +4,8 @@ import { string, number } from 'prop-types';
 
 import * as S from './styled';
 
-export default function OrderCheckout({ index, id, status, date, totalPrice }) {
+export default function OrderCheckout({ index,
+  role, id, status, date, totalPrice, address }) {
   const navigate = useNavigate();
   return (
     <S.DetailCard
@@ -13,30 +14,30 @@ export default function OrderCheckout({ index, id, status, date, totalPrice }) {
       } }
     >
       <S.DetailId
-        data-testid={ `customer_orders__element-order-id-${index}` }
+        data-testid={ `${role}_orders__element-order-id-${index}` }
       >
         { index }
       </S.DetailId>
       <S.DetailStatus
-        data-testid={ `customer_orders__element-delivery-status-${index}` }
+        data-testid={ `${role}_orders__element-delivery-status-${index}` }
       >
         { status }
       </S.DetailStatus>
 
       <S.DatePriceWrapper>
         <S.DetailDate
-          data-testid={ `customer_orders__element-order-date-${index}` }
+          data-testid={ `${role}_orders__element-order-date-${index}` }
         >
           { new Date(date).toLocaleDateString('pt-BR') }
         </S.DetailDate>
         <S.DetailPrice
-          data-testid={ `customer_orders__element-card-price-${index}` }
+          data-testid={ `${role}_orders__element-card-price-${index}` }
         >
           { (Number(totalPrice))
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
         </S.DetailPrice>
       </S.DatePriceWrapper>
-
+      { role === 'seller' && <S.DetailAddress>{ address }</S.DetailAddress>}
     </S.DetailCard>
   );
 }

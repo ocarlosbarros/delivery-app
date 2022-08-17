@@ -9,7 +9,7 @@ const { checkAuthorization } = require('../middlewares');
 Router.use('/login', loginRoute);
 Router.use('/register', registerRoute);
 Router.use('/customer/products', productRoute);
-Router.use('/customer/orders', checkAuthorization, orderRoute);
+Router.use('/:role/orders', checkAuthorization, orderRoute);
 Router.use('/images', express.static('public'));
 
 Router.use('/', (_req, res, _next) => res.send({ message: 'Redirecting...' }));
