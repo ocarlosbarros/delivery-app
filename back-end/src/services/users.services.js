@@ -25,7 +25,13 @@ const getSellers = async () => user
     attributes: ['id', 'name', 'email'],
   });
 
+const getUsers = async () => user
+.findAll({
+  attributes: { exclude: ['password'] },
+});
+
 module.exports = {
   createUser,
   getSellers,
+  getUsers,
 };

@@ -20,8 +20,16 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (local) {
-      const { role } = local;
-      const resource = role === 'customer' ? 'products' : 'orders';
+      let { role } = local;
+      let resource = '';
+      if (role === 'customer') {
+        resource = 'products';
+      } else if (role === 'seller') {
+        resource = 'orders';
+      } else {
+        role = 'admin';
+        resource = 'manage';
+      }
       return navigate(`/${role}/${resource}`);
     }
   }, [local, navigate]);
@@ -41,8 +49,12 @@ export default function LoginForm() {
 
       saveLogin({ email: Email, name, role, token, id });
 
-      if (role === 'customer') return navigate('/customer/products');
-      return navigate('/seller/orders');
+      if (role === 'customer') {
+        return navigate('/customer/products');
+      } if (role === 'seller') {
+        return navigate('/seller/orders');
+      }
+      return navigate('/admin/manage');
     } catch (e) {
       if (e.response.status === NOT_FOUND) setError(true);
     }
