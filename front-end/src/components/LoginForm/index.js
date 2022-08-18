@@ -96,7 +96,6 @@ export default function LoginForm() {
         {error && <ErrorCard
           testid="common_login__element-invalid-email"
           setError={ setError }
-          message="Email/Senha inválidos"
         />}
       </S.FormWrapper>
     </S.FormContainer>

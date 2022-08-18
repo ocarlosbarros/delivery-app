@@ -18,6 +18,8 @@ export const InputField = styled.input.attrs({
   box-shadow: -4px 4px 0px #000000;
   border-radius: 0px;
 
+
+
   ::placeholder {
     color: #000;
   }
