@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../components/NavBar';
 import InputForm from '../../components/InputForm';
 import SelectForm from '../../components/SelectForm';
-import ButtonForm from '../../components/ButtonForm';
+import LoginButtonForm from '../../components/LoginButtonForm';
 import UsersList from '../../components/UsersList';
 import ErrorCard from '../../components/ErrorCard';
 import { isValidRegister } from '../../utils';
@@ -52,7 +52,7 @@ export default function Admin() {
       setUsers(data);
     };
     fetchUsers();
-  }, [authorization, users]);
+  }, [authorization, users, instance]);
   return (
     <>
       <NavBar />
@@ -81,7 +81,7 @@ export default function Admin() {
         value={ role }
         set={ setRole }
       />
-      <ButtonForm
+      <LoginButtonForm
         disabled={ disabled }
         testid="admin_manage__button-register"
         type="submit"
