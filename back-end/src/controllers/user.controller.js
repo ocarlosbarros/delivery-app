@@ -7,7 +7,7 @@ const createUser = rescue(async (req, res, _next) => {
   
   let { role } = req.body;
   role = role || 'customer';
-
+  
   const { password, ...newUser } = await userService
   .createUser({ name, email, role, password: userPass });
   
@@ -19,4 +19,9 @@ const getSellers = async (req, res, _next) => {
   return res.status(StatusCodes.OK).json(sellers);
 };
 
-module.exports = { createUser, getSellers };
+const getUsers = async (req, res, _next) => {
+  const users = await userService.getUsers();
+  return res.status(StatusCodes.OK).json(users);
+};
+
+module.exports = { createUser, getSellers, getUsers };

@@ -15,7 +15,7 @@ import Register from './screens/Register';
 import Products from './screens/Products';
 import Checkout from './screens/Checkout';
 import Orders from './screens/Orders';
-
+import Admin from './screens/Admin';
 const history = createBrowserHistory({ window });
 
 const rootElement = document.getElementById('root');
@@ -30,6 +30,7 @@ ReactDOM.render(
       <Route element={ <Orders />} path="/:role/orders" >
         <Route element={ <Orders />} path="/:role/orders/:id" />
       </Route>
+      <Route element={ <Admin /> } path="/admin/manage" />
     </Routes>
   </HistoryRouter>,
   rootElement,

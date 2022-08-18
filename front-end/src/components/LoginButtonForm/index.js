@@ -24,4 +24,5 @@ LoginButtonForm.propTypes = {
   testid: PropTypes.string,
   click: PropTypes.func,
   value: PropTypes.string,
+  disabled: PropTypes.bool,
 }.isRequired;
