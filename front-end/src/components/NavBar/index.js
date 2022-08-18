@@ -16,24 +16,50 @@ export default function NavBar() {
       <S.NavList>
         {
           local.role === 'customer' && (
+            <>
+              <S.NavItem
+                onClick={ () => {
+                  navigate('/customer/products');
+                } }
+                data-testid="customer_products__element-navbar-link-products"
+              >
+                Produtos
+              </S.NavItem>
+              <S.NavItem
+                onClick={ () => {
+                  navigate(`/${local.role}/orders`);
+                } }
+                data-testid="customer_products__element-navbar-link-orders"
+              >
+                Meus Pedidos
+              </S.NavItem>
+            </>
+          )
+        }
+        {
+          local.role === 'seller' && (
             <S.NavItem
               onClick={ () => {
-                navigate('/customer/products');
+                navigate(`/${local.role}/orders`);
               } }
-              data-testid="customer_products__element-navbar-link-products"
+              data-testid="customer_products__element-navbar-link-orders"
             >
-              Produtos
+              Pedidos
             </S.NavItem>
           )
         }
-        <S.NavItem
-          onClick={ () => {
-            navigate(`/${local.role}/orders`);
-          } }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          Meus Pedidos
-        </S.NavItem>
+        {
+          local.role === 'administrator' && (
+            <S.NavItem
+              onClick={ () => {
+                navigate('/admin/manage');
+              } }
+              data-testid="customer_products__element-navbar-link-orders"
+            >
+              Gerenciar usuários
+            </S.NavItem>
+          )
+        }
         <S.NavItem
           data-testid="customer_products__element-navbar-user-full-name"
         >
