@@ -6,8 +6,11 @@ import InputText from '../InputForm';
 
 import * as S from './styled';
 import ErrorCard from '../ErrorCard';
-import ButtonForm from '../ButtonForm';
 import { isValidRegister, saveLogin } from '../../utils';
+import LoginButtonForm from '../LoginButtonForm';
+import Trail from '../Trail';
+import Logo from '../Logo';
+import DottedBox from '../DottedBox';
 
 export default function RegisterForm() {
   const [name, setName] = useState('');
@@ -36,8 +39,15 @@ export default function RegisterForm() {
 
   return (
     <S.FormContainer>
+      <S.Ellipse />
+      <S.Ellipse />
+      <S.Ellipse />
+      <S.Ellipse />
+      <Logo />
+      <Trail />
       <S.FormWrapper>
         <S.Form autoComplete="off">
+          <DottedBox />
           <InputText
             placeholder="Nome"
             testid="common_register__input-name"
@@ -63,7 +73,7 @@ export default function RegisterForm() {
               gap: '1rem',
             } }
           >
-            <ButtonForm
+            <LoginButtonForm
               disabled={ disabled }
               click={ handleRegister }
               testid="common_register__button-register"
