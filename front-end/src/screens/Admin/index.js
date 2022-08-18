@@ -28,7 +28,8 @@ export default function Admin() {
     baseURL: 'http://localhost:3001/',
   });
 
-  const createUser = async (user) => {
+  const createUser = async (event, user) => {
+    event.preventDefault();
     try {
       await instance
         .post(END_POINT, user, { headers: { authorization } });
@@ -86,7 +87,7 @@ export default function Admin() {
         testid="admin_manage__button-register"
         type="submit"
         value="Cadastrar"
-        click={ () => createUser({ name, email, password, role }) }
+        click={ (e) => createUser(e, { name, email, password, role }) }
       />
       <UsersList
         users={ users }
