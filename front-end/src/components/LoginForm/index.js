@@ -6,9 +6,12 @@ import InputText from '../InputForm';
 
 import * as S from './styled';
 import ErrorCard from '../ErrorCard';
-import BeerGIF from '../../images/beer.gif';
-import ButtonForm from '../ButtonForm';
 import { isValidLogin, saveLogin } from '../../utils';
+import LoginButtonForm from '../LoginButtonForm';
+import RegisterButtonForm from '../RegisterButtonForm';
+import Logo from '../Logo';
+import Trail from '../Trail';
+import DottedBox from '../DottedBox';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -66,8 +69,15 @@ export default function LoginForm() {
 
   return (
     <S.FormContainer>
+      <S.Ellipse />
+      <S.Ellipse />
+      <S.Ellipse />
+      <S.Ellipse />
+      <Logo />
+      <Trail />
       <S.FormWrapper>
         <S.Form autoComplete="off">
+          <DottedBox />
           <InputText
             placeholder="Email"
             testid="common_login__input-email"
@@ -80,35 +90,26 @@ export default function LoginForm() {
             value={ password }
             set={ setPassword }
           />
-          <div
-            style={ {
-              display: 'flex',
-              flexDirection: 'row-reverse',
-              gap: '1rem',
-            } }
-          >
-            <ButtonForm
-              disabled={ disabled }
-              click={ handleLogin }
-              type="button"
-              testid="common_login__button-login"
-              value="LOGIN"
-            />
-            <ButtonForm
-              click={ handleRegister }
-              testid="common_login__button-register"
-              type="button"
-              value="AINDA NÃO TENHO CONTA"
-            />
-          </div>
+          <LoginButtonForm
+            disabled={ disabled }
+            click={ handleLogin }
+            type="button"
+            testid="common_login__button-login"
+            value="LOGIN"
+          />
+          <RegisterButtonForm
+            className="register"
+            click={ handleRegister }
+            testid="common_login__button-register"
+            type="button"
+            value="AINDA NÃO TENHO CONTA"
+          />
         </S.Form>
         {error && <ErrorCard
           testid="common_login__element-invalid-email"
           setError={ setError }
-          message="Email/Senha inválidos"
         />}
       </S.FormWrapper>
-      <S.RightWrapper src={ BeerGIF } />
     </S.FormContainer>
   );
 }

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../../components/NavBar';
 import InputForm from '../../components/InputForm';
 import SelectForm from '../../components/SelectForm';
-import ButtonForm from '../../components/ButtonForm';
+import LoginButtonForm from '../../components/LoginButtonForm';
 import UsersList from '../../components/UsersList';
 import ErrorCard from '../../components/ErrorCard';
 import { isValidRegister } from '../../utils';
@@ -28,7 +28,8 @@ export default function Admin() {
     baseURL: 'http://localhost:3001/',
   });
 
-  const createUser = async (user) => {
+  const createUser = async (event, user) => {
+    event.preventDefault();
     try {
       await instance
         .post(END_POINT, user, { headers: { authorization } });
@@ -52,7 +53,7 @@ export default function Admin() {
       setUsers(data);
     };
     fetchUsers();
-  }, [authorization, users]);
+  }, [authorization, users, instance]);
   return (
     <>
       <NavBar />
@@ -81,12 +82,12 @@ export default function Admin() {
         value={ role }
         set={ setRole }
       />
-      <ButtonForm
+      <LoginButtonForm
         disabled={ disabled }
         testid="admin_manage__button-register"
         type="submit"
         value="Cadastrar"
-        click={ () => createUser({ name, email, password, role }) }
+        click={ (e) => createUser(e, { name, email, password, role }) }
       />
       <UsersList
         users={ users }

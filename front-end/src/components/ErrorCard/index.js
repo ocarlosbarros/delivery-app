@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import * as S from './styled';
 
-export default function ErrorCard({ setError, testid, message }) {
+export default function ErrorCard({ setError, testid }) {
   return (
     <S.ModalCard onClick={ () => setError(false) }>
+      <S.CardHeader />
       <S.CardWrapper>
         <S.Title
           data-testid={ testid }
         >
-          Error
+          {'CREDENCIAIS\nINVÁLIDAS'}
         </S.Title>
-        <S.Subtitle>{ message }</S.Subtitle>
         <S.Button
           type="button"
           onClick={

@@ -1,7 +1,7 @@
 import React from 'react';
 import { string } from 'prop-types';
 import * as S from './styled';
-import ButtonForm from '../ButtonForm';
+import LoginButtonForm from '../LoginButtonForm';
 
 export default function UserCard({ id, name, email, role }) {
   return (
@@ -26,7 +26,7 @@ export default function UserCard({ id, name, email, role }) {
       >
         { role }
       </S.UserRole>
-      <ButtonForm
+      <LoginButtonForm
         testid={ `admin_manage__element-user-table-remove-${id}` }
         type="submit"
         value="Excluir"

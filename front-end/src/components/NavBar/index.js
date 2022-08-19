@@ -6,6 +6,7 @@ import * as S from './styled';
 export default function NavBar() {
   const local = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
+  const path = window.location.pathname.split('/')[2];
 
   useEffect(() => {
     if (!local) navigate('/login');
@@ -13,11 +14,13 @@ export default function NavBar() {
 
   return local && (
     <S.NavWrapper>
+      <S.Header>DIECISIETE</S.Header>
       <S.NavList>
         {
           local.role === 'customer' && (
             <>
               <S.NavItem
+                selected={ path === 'products' }
                 onClick={ () => {
                   navigate('/customer/products');
                 } }
@@ -26,6 +29,7 @@ export default function NavBar() {
                 Produtos
               </S.NavItem>
               <S.NavItem
+                selected={ path === 'orders' }
                 onClick={ () => {
                   navigate(`/${local.role}/orders`);
                 } }
@@ -39,6 +43,7 @@ export default function NavBar() {
         {
           local.role === 'seller' && (
             <S.NavItem
+              selected={ path === 'orders' }
               onClick={ () => {
                 navigate(`/${local.role}/orders`);
               } }
@@ -72,7 +77,7 @@ export default function NavBar() {
           } }
           data-testid="customer_products__element-navbar-link-logout"
         >
-          Logout
+          Sair
         </S.NavItem>
       </S.NavList>
     </S.NavWrapper>

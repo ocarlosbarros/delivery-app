@@ -5,14 +5,22 @@ export const teste = 1;
 export const InputField = styled.input.attrs({
   type: 'text',
 })`
-  height: 2rem;
-  border: 1px solid #c4c4c4;
+  width: 319px;
+  height: 54px;
   padding-left: 16px;
   font-size: 1rem;
-  font-family: Helvetica, sans-serif;
-  border-radius: 4px;
+  font-family: 'Inter';
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  letter-spacing: 0.05rem;
 
-  :hover, :focus {
-    border: 1px solid #1da1f2;
+  /* SHADOW */
+  box-shadow: -4px 4px 0px #000000;
+  border-radius: 0px;
+
+
+
+  ::placeholder {
+    color: #000;
   }
 `;
