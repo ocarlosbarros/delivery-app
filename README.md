@@ -1,16 +1,50 @@
-# 🚧 README em construção 🚧
+# Delivery App
 
-<!-- Olá, Tryber!
+![Delivery App](./assets/login-delivery.png)
+![Delivery App](./assets/status-delivery.gif)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
 
-É essencial que você preencha esse documento por conta própria, ok?
+## Description
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+<p style="text-align: justify">
+Full Stack Application built using React, Styled Components, Nodejs, Express, Sequelize, and MySQL. The Application is a beverage delivery with features for users, sellers and admins using JWT authentication.
+</p>
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+## Requirements
 
--->
+requirements...
+
+
+## How to Run
+
+
+```bash
+git clone https://github.com/ocarlosbarros/delivery-app
+```
+```bash
+cd delivery-app-project
+```
+
+# 🚧 Step em construção...
+
+- Steps...
+
+# 🚧 Step em construção...
+
+- Steps...
+
+## Tecnologies and Libs
+
+### **Frontend**
+
+* React
+* Styled Components
+
+### **Backend**
+
+* Nodejs
+* Express
+* Sequelize
+* MySQL
+* JWT
+
