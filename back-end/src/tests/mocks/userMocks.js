@@ -1,40 +1,40 @@
 const loginBody = {
-  email: 'elizeginsu@hotmiau.com',
-  password: 'Pic@dinhO'
+  email: 'bruce@waynenterprises.com',
+  password: 'iambatman'
 };
 
 const registerBody = {
-  name: 'Elize Matsunaga',
-  email: 'elizeginsu@hotmiau.com',
+  name: 'Bruce Wayne',
+  email: 'bruce@waynenterprises.com',
   role: 'customer',
-  password: 'Pic@dinhO'
+  password: 'iambatman'
 };
 
 const registerBodyWithoutName = {
   name: '',
-  email: 'elizeginsu@hotmiau.com',
+  email: 'bruce@waynenterprises.com',
   role: 'customer',
-  password: 'Pic@dinhO'
+  password: 'iambatman'
 };
 
 const registerBodyWithoutEmail = {
-  name: 'Elize Matsunaga',
+  name: 'Bruce Wayne',
   email: '',
   role: 'customer',
-  password: 'Pic@dinhO'
+  password: 'iambatman'
 };
 
 const registerBodyWithoutPassword = {
-  name: 'Elize Matsunaga',
-  email: 'elizeginsu@hotmiau.com',
+  name: 'Bruce Wayne',
+  email: 'bruce@waynenterprises.com',
   role: 'customer',
   password: ''
 };
 
 const registerReturn = {
   id: 1,
-  name: 'Elize Matsunaga',
-  email: 'elizeginsu@hotmiau.com',
+  name: 'Bruce Wayne',
+  email: 'bruce@waynenterprises.com',
   role: 'customer',
   password: 'ca2198ab68c95d4ead8c60bdcd75cb20'
 };

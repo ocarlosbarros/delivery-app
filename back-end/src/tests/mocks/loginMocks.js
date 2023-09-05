@@ -1,27 +1,27 @@
 const loginBody = {
-  email: 'susukiller@hotmiau.com',
-  password: 'camisasempresujinhadesangue'
+  email: 'bruce@waynenterprises.com',
+  password: 'iambatman'
 };
 
 const loginBodyWithoutRegister = {
-  email: 'matsusu@hotmiau.com',
-  password: 'tudoempedacinhos'
+  email: 'grey_jean@xmen.com',
+  password: 'phoenix123'
 };
 
 const loginBodyWithoutEmail = {
   email: '',
-  password: 'camisasempresujinhadesangue'
+  password: 'iambatman'
 };
 
 const loginBodyWithoutPassword = {
-  email: 'susukiller@hotmiau.com',
+  email: 'bruce@waynenterprises.com',
   password: ''
 };
 
 const loginReturn = {
   id: 1,
-	name: 'Suzana Von Richthofen',
-  email: 'susukiller@hotmiau.com',
+	name: 'Bruce Wayne',
+  email: 'bruce@waynenterprises.com',
 	role: 'customer',
 	token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlN1emFuYSBWb24gUmljaHRob2ZlbiAiLCJlbWFpbCI6InN1c3VraWxsZXJAaG90bWlhdS5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NjAzMTU3MDQsImV4cCI6MTY2MDMxNjYwNH0.YVL6bpaS0R1W2BDFsUsPFWsEKQoxMMjUc6qKBU7mu5o'
 };
