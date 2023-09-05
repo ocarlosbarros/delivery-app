@@ -36,7 +36,7 @@ const registerReturn = {
   name: 'Bruce Wayne',
   email: 'bruce@waynenterprises.com',
   role: 'customer',
-  password: 'ca2198ab68c95d4ead8c60bdcd75cb20'
+  password: '2c65c8d7bfbca32a3ed42596192384f6'
 };
 
 module.exports = {
